@@ -1,0 +1,7 @@
+.fyll {
+    color: #f87171;
+    border: 1px dashed rgba(248, 113, 113, 0.6);
+    border-radius: 4px;
+    padding: 0 4px;
+    font-style: italic;
+}

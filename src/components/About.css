@@ -1,0 +1,35 @@
+.about {
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.about-portrait {
+    width: 260px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 30%;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.about-text p {
+    line-height: 1.8;
+    color: #ccc;
+    font-size: 1.1rem;
+}
+
+.about-text p + p {
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .about {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about-portrait {
+        width: 200px;
+    }
+}

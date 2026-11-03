@@ -1,0 +1,35 @@
+.contact-intro {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.contact-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.contact-link {
+    color: white;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: transform 0.2s;
+}
+
+.contact-link:hover {
+    transform: translateY(-3px);
+}
+
+.contact-link span {
+    display: block;
+    color: #3b82f6;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.footer {
+    padding: 60px 10% 30px;
+    color: #888;
+    font-size: 0.9rem;
+}
