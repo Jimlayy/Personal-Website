@@ -13,26 +13,41 @@ body {
 
     color: white;
 
-    background-image:
-        linear-gradient(
-            rgba(0,0,0,0.65),
-            rgba(0,0,0,0.65)
-        ),
-        url("/profilbild2.jpg");
-
-    background-size: cover;
-
-    background-position: center;
-
-    background-attachment: fixed;
-
-    background-repeat: no-repeat;
+    /* Syns medan bilden laddar, i samma blå ton som bilden */
+    background-color: #0b1020;
 }
 
-@media(max-width: 768px) {
-    body {
-        background-attachment: scroll;
-    }
+/* Bakgrundsbilden ligger i ett eget fast lager så att den kan göras suddig
+   (filter fungerar inte på background-image direkt). Fungerar likadant på mobil. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    /* Nedskalad bild (ca 1600 px) – laddar snabbt och skillnaden syns inte med blur */
+    background: url("./assets/bakgrund.jpg") no-repeat;
+    background-size: cover;
+    /* Bilden är stående; flytta beskärningen uppåt mot ansiktet och slottet */
+    background-position: center 30%;
+
+    /* Ändra blur-värdet för mer/mindre suddighet */
+    filter: blur(10px) saturate(1.1);
+    /* Förstoras lite så att de suddiga kanterna hamnar utanför skärmen */
+    transform: scale(1.08);
+}
+
+/* Mörk, blåtonad toning ovanpå bilden så att texten blir läsbar.
+   Mörkare i kanterna och nertill, ljusare i mitten. */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    background:
+        radial-gradient(ellipse at 50% 30%, rgba(11, 16, 32, 0.15), rgba(11, 16, 32, 0.65) 80%),
+        linear-gradient(rgba(11, 16, 32, 0.2), rgba(11, 16, 32, 0.45));
 }
 
 section {

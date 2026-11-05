@@ -4,7 +4,7 @@
 // Platshållarna är anteckningar till dig själv och visas därför på svenska i båda språken.
 import { isTranslated } from "../i18n";
 
-export const SHOW_TODOS = true;
+export const SHOW_TODOS = false;
 
 export const fyll = (text) => ({ fyll: text });
 

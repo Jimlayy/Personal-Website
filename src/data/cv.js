@@ -4,6 +4,9 @@
 // fyll("...") = platshållare. draft: true = hela posten är en mall.
 // Växla synligheten med SHOW_TODOS i ./fyll.js.
 import { fyll } from "./fyll";
+// Bilder i src/assets importeras så att Vite optimerar dem och sökvägen blir rätt
+// oavsett var sidan läggs ut. Byter du bild: skala ner den först (ca 800 px bred).
+import portrait from "../assets/profilbild.jpg";
 
 export const profile = {
     name: "Jimi Henricsson",
@@ -12,16 +15,14 @@ export const profile = {
         en: "MSc student in Computer Science and Engineering",
     },
     tagline: {
-        sv: "Tredjeårsstudent vid Linköpings universitet med stort intresse för mjukvaruutveckling.",
-        en: "Third-year student at Linköping University with a strong interest in software development.",
+        sv: "Tredjeårsstudent vid Linköpings universitet med intresse för allt från mjukvaruutveckling till hårdvarunära programmering.",
+        en: "Third-year student at Linköping University, interested in everything from software development to hardware-oriented programming.",
     },
     email: "jimihenricsson@gmail.com",
     linkedin: "https://www.linkedin.com/in/jimi-henricsson",
     github: "https://github.com/Jimlayy",
-    // Lägg CV:t i public/ och skriv sökvägen, t.ex. "/Jimi_Henricsson_CV.pdf".
-    // Har du ett engelskt CV också: { sv: "/CV_sv.pdf", en: "/CV_en.pdf" }.
-    cvFile: fyll("Lägg CV som PDF i public/ och ange sökvägen i cv.js"),
-    portrait: "/profilbild.jpg",
+    cvFile: "./Jimi_Henricsson_CV.pdf",
+    portrait: portrait,
 };
 
 export const about = [
@@ -34,18 +35,13 @@ export const about = [
         en: "Alongside my studies I'm involved in the Computer Engineering student chapter (D-sektionen). I have led the Marketing Committee as chair, I'm responsible for welcoming new students as part of the introduction committee, and I currently chair the Nomination Committee.",
     },
     {
-        sv: [
-            "Just nu söker jag sommarjobb inom mjukvaruutveckling ",
-            fyll("eller: inbyggda system / backend / data"),
-            " sommaren 2027.",
-        ],
-        en: [
-            "I'm currently looking for a summer job in software development ",
-            fyll("eller: inbyggda system / backend / data"),
-            " for summer 2027.",
-        ],
+        sv: "Mitt tekniska intresse är brett, från mjukvaruutveckling till hårdvarunära programmering, och jag trivs bäst i projekt där jag får kombinera problemlösning med att samarbeta mot ett gemensamt mål. Just nu söker jag sommarjobb inom tech sommaren 2027.",
+        en: "My technical interests are broad, from software development to low-level, hardware-oriented programming, and I thrive in projects where I can combine problem solving with working together towards a shared goal. I'm currently looking for a summer job in tech for summer 2027.",
     },
-    fyll("Något personligt: intressen och vad du gör på fritiden, t.ex. träning, musik, spel eller resor"),
+    {
+        sv: "På fritiden gillar jag att klättra, spela brädspel, spela instrument och umgås med vänner. Jag tycker om att testa nya grejer, få nya erfarenheter och lära mig nya saker.",
+        en: "In my free time I enjoy climbing, playing board games, playing instruments and hanging out with friends. I like trying new things, gaining new experiences and learning new skills.",
+    },
 ];
 
 export const education = [
@@ -62,9 +58,9 @@ export const education = [
         tags: [
             { sv: "Datastrukturer och algoritmer", en: "Data Structures and Algorithms" },
             { sv: "Objektorienterad programmering i Java", en: "Object-Oriented Programming in Java" },
+            { sv: "Datorkonstruktion", en: "Computer Hardware Design" },
             { sv: "Funktionell och imperativ programmering", en: "Functional and Imperative Programming" },
             { sv: "Processprogrammering och operativsystem", en: "Concurrent Programming and Operating Systems" },
-            fyll("fler kurser"),
         ],
     },
 ];
@@ -72,12 +68,15 @@ export const education = [
 export const skills = [
     {
         label: { sv: "Programmering", en: "Programming" },
-        items: ["Java", "Python", "C++", "C", "C#", fyll("Haskell/SQL?")],
+        items: ["Java", "Python", "C++", "C", "C#", "VHDL"],
     },
-    { label: { sv: "Webb", en: "Web" }, items: ["React", "JavaScript", "HTML", "CSS"] },
     {
         label: { sv: "Verktyg", en: "Tools" },
-        items: [fyll("Git, Linux, VS Code, IntelliJ – bara det du faktiskt använt")],
+        items: ["Git", "GitLab CI/CD", "Linux", "Java Swing", "FPGA (Basys 3)", "UML", "Excel"],
+    },
+    {
+        label: { sv: "AI-verktyg", en: "AI tools" },
+        items: ["Claude", "Claude Code", "ChatGPT"],
     },
     {
         label: { sv: "Språk", en: "Languages" },
@@ -96,6 +95,45 @@ export const skills = [
 
 export const projects = [
     {
+        period: { sv: "ht 2026 – pågående", en: "Fall 2026 – present" },
+        title: {
+            sv: "RoboCab – autonom robottaxi, testansvarig",
+            en: "RoboCab – autonomous robot taxi, test lead",
+        },
+        tags: ["C", "Python", "OpenCV", "GitLab CI/CD", "ATmega1284", "Raspberry Pi"],
+        points: [
+            {
+                sv: "Testansvarig i ett projekt med sju personer i kursen Konstruktion med mikrodatorer, där vi bygger en självkörande bil med ATmega-processorer och Raspberry Pi",
+                en: "Test lead in a seven-person team in the course Microcomputer Project Laboratory, building a self-driving car with ATmega processors and a Raspberry Pi",
+            },
+            {
+                sv: "Satte upp en CI-pipeline i GitLab som vid varje push korskompilerar koden för ATmega1284 och kör över 100 automatiska tester",
+                en: "Set up a GitLab CI pipeline that cross-compiles the code for the ATmega1284 and runs more than 100 automated tests on every push",
+            },
+            {
+                sv: "Delade upp koden så att logik utan hårdvaruberoenden testas på en vanlig dator, med flera tester skrivna före koden och pytest-tester för kamerans bildbehandling",
+                en: "Split the code so that hardware-independent logic is tested on a regular computer, with several tests written before the code and pytest tests for the camera's image processing",
+            },
+        ],
+        links: [{ label: "GitHub", href: "https://github.com/Jimlayy/RoboCab" }],
+    },
+    {
+        period: { sv: "vt 2026", en: "Spring 2026" },
+        title: { sv: "Synthesizer på egenbyggd processor", en: "Synthesizer on a custom-built processor" },
+        tags: ["VHDL", "FPGA (Basys 3)", "UART", "MIDI"],
+        points: [
+            {
+                sv: "Konstruerade en mikroprogrammerad 32-bitarsprocessor med egen instruktionsuppsättning (13 instruktioner, 4 adresseringsmoder) i grupp om tre i kursen Datorkonstruktion",
+                en: "Designed a microprogrammed 32-bit processor with a custom instruction set (13 instructions, 4 addressing modes) in a team of three in the course Computer Hardware Design",
+            },
+            {
+                sv: "Implementerade en UART-mottagare och MIDI-parser (31 250 baud) och minnesmappade tonen till processorn, så att ett MIDI-keyboard spelar toner genom FPGA-kortet",
+                en: "Implemented a UART receiver and MIDI parser (31,250 baud) and memory-mapped the note to the processor, so that a MIDI keyboard plays notes through the FPGA board",
+            },
+        ],
+        links: [{ label: "GitHub", href: "https://github.com/Jimlayy/Synthesizer" }],
+    },
+    {
         period: { sv: "ht 2026", en: "Fall 2026" },
         title: { sv: "Personlig hemsida", en: "Personal website" },
         tags: ["React", "Vite", "CSS"],
@@ -105,37 +143,31 @@ export const projects = [
                 en: "This site, built from scratch in React and available in Swedish and English. All content lives in a separate data file, which keeps the site easy to update.",
             },
         ],
-        links: [fyll("Länk till GitHub-repo")],
+        links: [{ label: "GitHub", href: "https://github.com/Jimlayy/Personal-Website" }],
     },
     {
-        draft: true,
-        period: fyll("vt 2026"),
-        title: fyll("Projektnamn"),
-        tags: [fyll("Java, Swing, Git")],
+        period: { sv: "vt 2025", en: "Spring 2025" },
+        title: { sv: "Catan – brädspel i Java", en: "Catan – board game in Java" },
+        tags: ["Java", "Swing", "Git"],
         points: [
-            fyll("Vad du byggde, t.ex. ”Utvecklade ett 2D-spel i Java i grupp om fyra som …”"),
-            fyll("Din roll / något konkret du implementerade eller löste"),
+            {
+                sv: "Utvecklade en spelbar datorversion av Catan i par: slumpad spelplan, byggregler, resursutdelning, rövaren och utvecklingskort (ca 1 900 rader kod)",
+                en: "Developed a playable computer version of Catan in a pair: randomised board, building rules, resource distribution, the robber and development cards (about 1,900 lines of code)",
+            },
         ],
-        links: [fyll("GitHub / demo / bild")],
+        links: [{ label: "GitHub", href: "https://github.com/Jimlayy/Catan" }],
     },
     {
-        draft: true,
-        period: fyll("vt 2026"),
-        title: fyll("Projektnamn"),
-        tags: [fyll("C, Linux, POSIX-trådar")],
+        period: { sv: "vt 2025", en: "Spring 2025" },
+        title: "Tetris",
+        tags: ["Java", "Swing", "Gson"],
         points: [
-            fyll("T.ex. projektet i Processprogrammering och operativsystem"),
-            fyll("Resultat, t.ex. prestanda, betyg, användare"),
+            {
+                sv: "Byggde ett komplett Tetris med utbytbara spelregler (strategy-mönstret) och en highscore-lista som sparas som JSON",
+                en: "Built a complete Tetris with interchangeable game rules (the strategy pattern) and a high-score list saved as JSON",
+            },
         ],
-        links: [fyll("GitHub / demo / bild")],
-    },
-    {
-        draft: true,
-        period: fyll("ht 2025"),
-        title: fyll("Projektnamn"),
-        tags: [fyll("Python, …")],
-        points: [fyll("T.ex. eget sidoprojekt, hackathon eller labbserie")],
-        links: [fyll("GitHub / demo / bild")],
+        links: [{ label: "GitHub", href: "https://github.com/Jimlayy/Tetris" }],
     },
 ];
 
@@ -162,8 +194,8 @@ export const engagement = [
         subtitle: dSektionen,
         points: [
             {
-                sv: ["Leder rekryteringsprocessen till sektionens förtroendeposter", fyll(", antal poster")],
-                en: ["Lead the recruitment process for the chapter's elected positions", fyll(", antal poster")],
+                sv: "Leder rekryteringsprocessen till sektionens förtroendeposter",
+                en: "Lead the recruitment process for the chapter's elected positions",
             },
         ],
     },
@@ -176,8 +208,12 @@ export const engagement = [
         subtitle: dSektionen,
         points: [
             {
-                sv: ["Planerar och genomför mottagningen av nya studenter", fyll(", ca X nyantagna")],
-                en: ["Plan and run the introduction period for new students", fyll(", ca X nyantagna")],
+                sv: "Planerat och genomfört mottagningen av 200+ nyantagna, med en budget på ca 600 000 kr",
+                en: "Planned and ran the introduction period for 200+ new students, with a budget of about SEK 600,000",
+            },
+            {
+                sv: "Rekryterat, utbildat och varit ansvarig för ca 110 faddrar till och under mottagningen",
+                en: "Recruited, trained and led about 110 student mentors before and during the introduction period",
             },
         ],
     },
@@ -197,10 +233,9 @@ export const engagement = [
                 en: "Elected chair (Apr 2025) after a year as activities coordinator",
             },
             {
-                sv: ["Ledde utskottet", fyll(" (X medlemmar)"), " och ansvarade för marknadsföring och evenemang"],
-                en: ["Led the committee", fyll(" (X medlemmar)"), " and was responsible for marketing and events"],
+                sv: "Ledde utskottet (7 medlemmar) och ansvarade för marknadsföring och evenemang",
+                en: "Led the committee (7 members) and was responsible for marketing and events",
             },
-            fyll("Konkret resultat, t.ex. ”genomförde X evenemang”"),
         ],
     },
 ];

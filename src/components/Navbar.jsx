@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ui } from "../data/ui";
-import { tr, useLang } from "../i18n";
+import { ENGLISH_ENABLED, tr, useLang } from "../i18n";
 import Rich from "./Rich";
 import "./Navbar.css";
 
@@ -27,15 +27,17 @@ function Navbar({ name, links }) {
 
             <div className="nav-actions">
 
-                <button
-                    className="lang-toggle"
-                    aria-label={tr(ui.nav.switchTo, lang)}
-                    title={tr(ui.nav.switchTo, lang)}
-                    onClick={() => setLang(lang === "sv" ? "en" : "sv")}
-                >
-                    <span className={lang === "sv" ? "active" : ""}>SV</span>
-                    <span className={lang === "en" ? "active" : ""}>EN</span>
-                </button>
+                {ENGLISH_ENABLED && (
+                    <button
+                        className="lang-toggle"
+                        aria-label={tr(ui.nav.switchTo, lang)}
+                        title={tr(ui.nav.switchTo, lang)}
+                        onClick={() => setLang(lang === "sv" ? "en" : "sv")}
+                    >
+                        <span className={lang === "sv" ? "active" : ""}>SV</span>
+                        <span className={lang === "en" ? "active" : ""}>EN</span>
+                    </button>
+                )}
 
                 <button
                     className="nav-toggle"

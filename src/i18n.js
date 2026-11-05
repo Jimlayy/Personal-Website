@@ -3,6 +3,10 @@ import { createContext, useContext } from "react";
 // Text som finns på båda språken skrivs som { sv: "...", en: "..." }.
 export const LANGUAGES = ["sv", "en"];
 
+// false = sidan visas bara på svenska och språkknappen döljs.
+// Sätt till true när den engelska versionen är redo.
+export const ENGLISH_ENABLED = false;
+
 export const LanguageContext = createContext({ lang: "sv", setLang: () => {} });
 
 export const useLang = () => useContext(LanguageContext);
@@ -16,6 +20,7 @@ export const tr = (value, lang) => (isTranslated(value) ? value[lang] : value);
 const STORAGE_KEY = "lang";
 
 export function initialLang() {
+    if (!ENGLISH_ENABLED) return "sv";
     try {
         const stored = localStorage.getItem(STORAGE_KEY);
         if (LANGUAGES.includes(stored)) return stored;
